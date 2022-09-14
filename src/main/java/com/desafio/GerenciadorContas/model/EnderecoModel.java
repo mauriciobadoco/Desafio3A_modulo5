@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import java.util.Date;
+import java.io.Serializable;
+
 
 @Entity
 @Table(name = "endereco")
@@ -16,7 +14,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnderecoModel {
+public class EnderecoModel implements Serializable {
 
 
     @Id
@@ -35,5 +33,11 @@ public class EnderecoModel {
     @Column(length = 100)
     private String pontoReferencia;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private UsuarioModel usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "nomeCidade",referencedColumnName = "id")
+    private CidadeModel cidade;
 }

@@ -46,7 +46,6 @@ public class GerenciadorController {
     @PostMapping (path = "/contas")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<GerenciadorModel> cadastrarConta(@RequestBody GerenciadorModel contas){
-
          return ResponseEntity.ok(service.cadastrarContas(contas));
     }
 

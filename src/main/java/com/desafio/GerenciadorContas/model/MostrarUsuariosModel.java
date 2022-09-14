@@ -28,7 +28,7 @@ public class MostrarUsuariosModel {
     }
 
     public static List<MostrarUsuariosModel> convert(List<UsuarioModel> usuarioModel){
-        return  usuarioModel.stream().map(MostrarUsuariosModel::new).collect((Collectors.toList()));
+        return  usuarioModel.stream().map(MostrarUsuariosModel::new).collect(Collectors.toList());
 
     }
 

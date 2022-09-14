@@ -2,6 +2,7 @@ package com.desafio.GerenciadorContas.model;
 
 
 import com.desafio.GerenciadorContas.Enum.StatusConta;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +11,10 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -20,7 +22,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioModel {
+public class UsuarioModel implements Serializable {
 
 
     @Id
@@ -40,5 +42,13 @@ public class UsuarioModel {
     @Column(length = 100)
     @CPF
     private String cpf;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<EnderecoModel> enderecos = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<ContasReceberModel> contasReceber = new ArrayList<>();
 
 }

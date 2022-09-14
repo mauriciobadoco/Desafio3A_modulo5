@@ -14,37 +14,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
 
-    @GetMapping(path = "/usuario")
+    @GetMapping
     public ResponseEntity<List<MostrarUsuariosModel>> buscarUsuarios(){
         List<MostrarUsuariosModel> listaUsuarios = service.mostrarUsuarios();
         return ResponseEntity.ok(listaUsuarios);
     }
 
-    @GetMapping (path = "/usuario/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<UsuarioModel>> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
-    @PostMapping(path = "/usuario")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody UsuarioModel usuarioModel){
 
         return ResponseEntity.ok(service.cadastrarUsuario(usuarioModel));
     }
 
-    @PutMapping (path ="/usuario/{id}")
+    @PutMapping ("/{id}")
     public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody UsuarioModel usuarioModel){
         return ResponseEntity.ok(service.alterarUsuario(usuarioModel));
     }
 
-
-
-    @DeleteMapping (path = "/usuario/{id}")
+    @DeleteMapping ("/{id}")
     public void deletarUsuario(@PathVariable Long id){
         service.deletarUsuario(id);
     }
