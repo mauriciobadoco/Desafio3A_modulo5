@@ -3,14 +3,12 @@ package com.desafio.GerenciadorContas.model;
 
 import com.desafio.GerenciadorContas.Enum.StatusConta;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +28,7 @@ public class UsuarioModel implements Serializable {
     private Long id;
 
     @Column(length = 100, nullable = false)
+    @NotNull
     private String nomeUsuario;
 
     @Column(length = 50)

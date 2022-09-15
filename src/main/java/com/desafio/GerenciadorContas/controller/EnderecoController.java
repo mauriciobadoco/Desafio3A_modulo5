@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,13 @@ public class EnderecoController {
 
     @PostMapping(path = "/endereco")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<EnderecoModel> cadastrarEndereco(@RequestBody EnderecoModel enderecoModel){
+    public ResponseEntity<EnderecoModel> cadastrarEndereco(@RequestBody @Valid EnderecoModel enderecoModel){
 
         return ResponseEntity.ok(service.cadastrarEndereco(enderecoModel));
     }
 
     @PutMapping (path ="/endereco/{id}")
-    public ResponseEntity<EnderecoModel> alterarEndereco(@RequestBody EnderecoModel enderecoModel){
+    public ResponseEntity<EnderecoModel> alterarEndereco(@RequestBody @Valid EnderecoModel enderecoModel){
         return ResponseEntity.ok(service.alterarEndereco(enderecoModel));
     }
 

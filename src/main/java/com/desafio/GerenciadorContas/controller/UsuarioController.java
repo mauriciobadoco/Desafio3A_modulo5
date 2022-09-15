@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,13 +34,13 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody UsuarioModel usuarioModel){
+    public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody @Valid UsuarioModel usuarioModel){
 
         return ResponseEntity.ok(service.cadastrarUsuario(usuarioModel));
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody UsuarioModel usuarioModel){
+    public ResponseEntity<UsuarioModel> alterarUsuario(@RequestBody  @Valid UsuarioModel usuarioModel){
         return ResponseEntity.ok(service.alterarUsuario(usuarioModel));
     }
 

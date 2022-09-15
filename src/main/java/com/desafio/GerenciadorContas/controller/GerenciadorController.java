@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,11 +51,9 @@ public class GerenciadorController {
     }
 
     @PutMapping (path ="/contas/{id}")
-    public ResponseEntity<GerenciadorModel> pagarContas(@RequestBody AtualizaStatus atualizaStatus, @PathVariable Long id){
+    public ResponseEntity<GerenciadorModel> pagarContas(@RequestBody @Valid AtualizaStatus atualizaStatus, @PathVariable Long id){
         return ResponseEntity.ok(service.pagarContas(atualizaStatus,id));
     }
-
-
 
     @DeleteMapping (path = "/contas/{id}")
     public void deletarConta(@PathVariable Long id){

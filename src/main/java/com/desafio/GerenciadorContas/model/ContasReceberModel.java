@@ -5,10 +5,11 @@ import com.desafio.GerenciadorContas.Enum.TipoRecebimento;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Entity
@@ -25,8 +26,14 @@ public class ContasReceberModel implements Serializable {
     private Long codigo;
     private RecebimentoAlugueis status;
     private String recebimento;
+
+    @NotNull
     private BigDecimal valorRecebido;
-    private TipoRecebimento tipoRecebido;
+
+    @NotNull
+    private TipoRecebimento tipoRecebimento;
+
+    @NotNull
     private LocalDate dataDeVencimento;
     private LocalDate dataDeRecebimento;
     @ManyToOne
