@@ -1,5 +1,6 @@
 package com.desafio.GerenciadorContas.controller;
 
+import com.desafio.GerenciadorContas.Enum.RecebimentoAlugueis;
 import com.desafio.GerenciadorContas.Enum.TipoRecebimento;
 import com.desafio.GerenciadorContas.model.ContasReceberModel;
 import com.desafio.GerenciadorContas.service.ContasReceberService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +34,14 @@ public class ContasReceberController {
     public ResponseEntity<List<ContasReceberModel>> buscarPorTipoRecebimento(@PathVariable TipoRecebimento tipoRecebimento){
         return ResponseEntity.ok(service.buscarTipoRecebimento(tipoRecebimento));
     }
-
+    @GetMapping ("/aluguel/{status}")
+    public ResponseEntity<List<ContasReceberModel>> buscarPorStatus(@PathVariable RecebimentoAlugueis status){
+        return ResponseEntity.ok(service.buscarPorStatus(status));
+    }
+//    @GetMapping ("/vencimento/{dataDeVencimento}")
+//    public List<ContasReceberModel> buscarPorVencimento(@PathVariable LocalDate dataDeVencimento){
+//        return service.buscarPorVencimento(dataDeVencimento);
+//    }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ContasReceberModel cadastrarContas(@RequestBody @Valid ContasReceberModel contasReceberModel) {
@@ -45,6 +54,7 @@ public class ContasReceberController {
     }
 
     @DeleteMapping ("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarContas(@PathVariable Long codigo){
         service.deletarContas(codigo);
     }
