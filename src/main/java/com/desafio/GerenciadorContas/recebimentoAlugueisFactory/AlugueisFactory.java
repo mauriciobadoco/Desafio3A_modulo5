@@ -26,8 +26,11 @@ public class AlugueisFactory {
             return  new EmDia();
         }else if( recebimentoAlugueis == EM_ATRASO){
             return new  EmAtraso();
+        }else{
+            //Retorna msg para entrada diferente do esperado
+            throw new IllegalArgumentException("Não fo possível determinar");
         }
-        return null;
+
     }
 }
 
